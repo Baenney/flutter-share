@@ -50,6 +50,18 @@ static NSString *const PLATFORM_CHANNEL = @"plugins.flutter.io/share";
   UIActivityViewController *activityViewController =
       [[UIActivityViewController alloc] initWithActivityItems:@[ sharedItems ]
                                         applicationActivities:nil];
+    /* Only allow Airdrop */
+    NSArray *excludedActivities = @[UIActivityTypePostToTwitter, UIActivityTypePostToFacebook,
+    UIActivityTypePostToWeibo,
+    UIActivityTypeMessage, UIActivityTypeMail,
+    UIActivityTypePrint, UIActivityTypeCopyToPasteboard,
+    UIActivityTypeAssignToContact, UIActivityTypeSaveToCameraRoll,
+    UIActivityTypeAddToReadingList, UIActivityTypePostToFlickr,
+    UIActivityTypePostToVimeo, UIActivityTypePostToTencentWeibo];
+
+    activityViewController.excludedActivityTypes = excludedActivities;
+    /* Only allow Airdrop */
+
   activityViewController.popoverPresentationController.sourceView = controller.view;
   if (!CGRectIsEmpty(origin)) {
     activityViewController.popoverPresentationController.sourceRect = origin;
